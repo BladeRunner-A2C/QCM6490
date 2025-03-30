@@ -33,6 +33,10 @@ function build_super {
         --output_ota
 }
 
-build_qssi
-build_target
-build_super
+if [ "$1" = 'vendor_only' ]; then
+    build_target
+else
+    build_qssi
+    build_target
+    build_super
+fi
