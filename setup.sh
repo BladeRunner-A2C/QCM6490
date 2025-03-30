@@ -24,8 +24,12 @@ function sync_repo {
     fi
 }
 
-sync_repo "$QSSI_ROOT" "qssi.xml"
-sync_repo "$VENDOR_ROOT" "target.xml"
+if [ "$1" = 'vendor_only' ]; then
+    sync_repo "$VENDOR_ROOT" "target.xml"
+else
+    sync_repo "$QSSI_ROOT" "qssi.xml"
+    sync_repo "$VENDOR_ROOT" "target.xml"
+fi
 
 cd "$BUILD_ROOT"
 echo "[+] Successfully returned to the build root."
